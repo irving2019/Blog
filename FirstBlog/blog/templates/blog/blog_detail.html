@@ -38,6 +38,52 @@
 					</div>
 				</div>
 			</div>
+			<div>
+				<br>
+				<p>Понравилось: {{ post.likes_set.all.count }}</p>
+				<br>
+				<a href="{% url 'add_likes' post.id %}">Нравится</a>
+				<a href="{% url 'del_likes' post.id %}">Не нравится</a>
+			</div>
+			<div class="form-comment">
+				<h3>Оставить комментарий</h3>
+				<div>
+					<form action="{% url 'add_comments' post.id %}" method="post">
+						{% csrf_token %}
+						<div>
+						<label>Ваш комментарий</label>
+						<textarea name="text_comments"></textarea>
+						</div>
+
+						<div>
+						<label>Ваше имя *</label>
+						<input type="text" name="user_name">
+						</div>
+
+						<div>
+						<label>Ваш Email*</label>
+						<input type="email" name="email">
+						</div>
+
+						<div>
+							<input type="submit">
+						</div>
+
+					</form>
+				</div>
+			</div>
+			<div>
+				{% for comment in post.comments_set.all %}
+				<div class="view-comment">
+					<h4>{{ comment.user_name }}</h4>
+					<p>
+						{{ comment.text_comments }}
+					</p>
+				</div>
+				{% endfor %}
+			</div>
+
+
 
 			<div class="cl">&nbsp;</div>
 		</div>
