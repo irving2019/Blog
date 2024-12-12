@@ -1,2 +1,4 @@
 FirstBlog/settings.py
 db.sqlite3
+.idea/
+/workspace.xml
